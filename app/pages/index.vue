@@ -85,42 +85,10 @@
 
     <!-- Features Section -->
     <FeaturesSection />
-    <!-- CTA Final -->
-    <section class="py-12 sm:py-20">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 px-4">
-          Pronto para começar?
-        </h2>
-        <p class="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 px-4">
-          Navegue por nossa coleção e encontre produtos incríveis
-        </p>
-        <NuxtLink
-          to="/produtos"
-          class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl font-bold text-base sm:text-lg hover:shadow-2xl transition-all hover:scale-105"
-        >
-          <span>Ver Todos os Produtos</span>
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </NuxtLink>
-      </div>
-    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import FeaturesSection from '~/components/home/FeaturesSection.vue';
-
 // SEO
 useHead({
   title: "Home - Smarti Store",
