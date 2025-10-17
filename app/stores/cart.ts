@@ -41,9 +41,27 @@ export const useCartStore = defineStore('cart', {
       else {
         this.items.push({ ...product, quantity: 1, },)
       }
+      this.lastUpdated = new Date()
+      this.persistCart()
     },
     removeItem(productId: number,) {
       this.items = this.items.filter(item => item.id !== productId,)
+      this.lastUpdated = new Date()
+      this.persistCart()
+    },
+    updateItemQuantity(productId: number, quantity: number,) {
+      const item = this.items.find(item => item.id === productId,)
+
+      if (item) {
+        if (quantity <= 0) {
+          this.removeItem(productId,)
+        }
+        else {
+          item.quantity = quantity
+          this.lastUpdated = new Date()
+          this.persistCart()
+        }
+      }
     },
     incrementItemQuantity(productId: number,) {
       const item = this.items.find(item => item.id === productId,)

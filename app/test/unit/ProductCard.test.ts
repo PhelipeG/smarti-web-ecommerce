@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, vi, } from 'vitest'
 import { mount, } from '@vue/test-utils'
 import { setActivePinia, createPinia, } from 'pinia'
-import type { Product } from '~~/types'
-import ProductCard from '~/components/products/ProductCard.vue'
+import type { Product, } from '~~/types'
 
+const ProductCard = await import('~/components/products/ProductCard.vue').then(m => m.default,)
 
 // Mock do produto
 const mockProduct: Product = {
@@ -124,10 +124,10 @@ describe('ProductCard Component', () => {
       },
     },)
 
-    const description = wrapper.find('p.text-sm.text-gray-600.mb-4.line-clamp-2') 
+    const description = wrapper.find('p.text-sm.text-gray-600.mb-4.line-clamp-2',)
     expect(description.exists(),).toBe(true,)
-   
+
     const descriptionText = description.text()
-    expect(descriptionText).toContain('Esta é uma descrição do produto de teste para vali')
+    expect(descriptionText,).toContain('Esta é uma descrição do produto de teste para vali',)
   },)
 },)

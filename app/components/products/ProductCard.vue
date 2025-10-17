@@ -49,7 +49,7 @@
 
       <!-- Descrição -->
       <p class="text-sm text-gray-600 mb-4 line-clamp-2 flex-1">
-        {{ truncateText(product.description) }}
+        {{ truncateText(product.description,) }}
       </p>
 
       <!-- Preço e ações -->
@@ -106,7 +106,7 @@
 
 <script setup lang="ts">
 import { useCart, } from '~/composables/useCart'
-import { truncateText } from '~/utils/formatters';
+import { truncateText, } from '~/utils/formatters'
 import type { Product, } from '~~/types'
 
 const props = defineProps<{

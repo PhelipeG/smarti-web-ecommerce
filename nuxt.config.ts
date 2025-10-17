@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath, } from 'node:url'
 
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', 'nuxt-lucide-icons', '@nuxt/image', '@nuxt/eslint','@nuxt/test-utils/module'],
+  modules: ['@pinia/nuxt', 'nuxt-lucide-icons', '@nuxt/image', '@nuxt/eslint', '@nuxt/test-utils/module',],
   components: [
     {
       path: '~/components',
