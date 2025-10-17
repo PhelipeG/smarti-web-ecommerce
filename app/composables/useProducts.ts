@@ -68,7 +68,6 @@ export const useFilteredProducts = () => {
     }
     return filtered
   },)
-  // Funções para atualizar filtros e limpar
   const setCategory = (category: string,) => {
     selectedCategory.value = category
   }
