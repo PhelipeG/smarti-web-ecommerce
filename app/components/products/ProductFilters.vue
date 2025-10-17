@@ -14,10 +14,10 @@
             id="search"
             type="text"
             :value="searchQuery"
-            @input="handleSearch"
             placeholder="Digite o nome do produto..."
             class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-          />
+            @input="handleSearch"
+          >
           <svg
             class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
             fill="none"
@@ -45,16 +45,18 @@
         <select
           id="category"
           :value="selectedCategory"
-          @change="handleCategoryChange"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none bg-white cursor-pointer"
+          @change="handleCategoryChange"
         >
-          <option value="all">Todas as categorias</option>
+          <option value="all">
+            Todas as categorias
+          </option>
           <option
             v-for="category in categories"
             :key="category"
             :value="category"
           >
-            {{ formatCategory(category) }}
+            {{ formatCategory(category,) }}
           </option>
         </select>
       </div>
@@ -63,8 +65,8 @@
       <div class="flex items-end">
         <button
           v-if="hasActiveFilters"
-          @click="handleClearFilters"
           class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium flex items-center space-x-2"
+          @click="handleClearFilters"
         >
           <svg
             class="w-5 h-5"
@@ -85,13 +87,19 @@
     </div>
 
     <!-- Contador de resultados -->
-    <div v-if="resultsCount !== undefined" class="mt-4 text-sm text-gray-600">
+    <div
+      v-if="resultsCount !== undefined"
+      class="mt-4 text-sm text-gray-600"
+    >
       <span class="font-semibold">{{ resultsCount }}</span>
       {{ resultsCount === 1 ? "produto encontrado" : "produtos encontrados" }}
-      <span v-if="hasActiveFilters" class="text-blue-600">
+      <span
+        v-if="hasActiveFilters"
+        class="text-blue-600"
+      >
         (filtrado{{
           selectedCategory !== "all"
-            ? ` - ${formatCategory(selectedCategory)}`
+            ? ` - ${formatCategory(selectedCategory,)}`
             : ""
         }})
       </span>
@@ -101,31 +109,31 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  searchQuery: string;
-  selectedCategory: string;
-  categories: string[];
-  hasActiveFilters: boolean;
-  resultsCount?: number;
-}>();
+  searchQuery: string
+  selectedCategory: string
+  categories: string[]
+  hasActiveFilters: boolean
+  resultsCount?: number
+}>()
 
 // Emissão de eventos
 const emit = defineEmits<{
-  "update:search": [value: string];
-  "update:category": [value: string];
-  clear: [];
-}>();
+  'update:search': [value: string,]
+  'update:category': [value: string,]
+  'clear': []
+}>()
 
-const handleSearch = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  emit("update:search", target.value);
-};
+const handleSearch = (event: Event,) => {
+  const target = event.target as HTMLInputElement
+  emit('update:search', target.value,)
+}
 
-const handleCategoryChange = (event: Event) => {
-  const target = event.target as HTMLSelectElement;
-  emit("update:category", target.value);
-};
+const handleCategoryChange = (event: Event,) => {
+  const target = event.target as HTMLSelectElement
+  emit('update:category', target.value,)
+}
 
 const handleClearFilters = () => {
-  emit("clear");
-};
+  emit('clear',)
+}
 </script>

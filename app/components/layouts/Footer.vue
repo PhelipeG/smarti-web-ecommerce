@@ -4,7 +4,9 @@
       <div class="grid md:grid-cols-4 gap-8">
         <!-- Sobre -->
         <div>
-          <h3 class="text-lg font-bold mb-4">Smarti Store</h3>
+          <h3 class="text-lg font-bold mb-4">
+            Smarti Store
+          </h3>
           <p class="text-gray-400 text-sm">
             Sua loja online com os melhores produtos e preços do mercado.
           </p>
@@ -12,7 +14,9 @@
 
         <!-- Links -->
         <div>
-          <h3 class="text-lg font-bold mb-4">Links Rápidos</h3>
+          <h3 class="text-lg font-bold mb-4">
+            Links Rápidos
+          </h3>
           <ul class="space-y-2 text-sm">
             <li>
               <NuxtLink
@@ -43,14 +47,19 @@
 
         <!-- Categorias -->
         <div>
-          <h3 class="text-lg font-bold mb-4">Categorias</h3>
+          <h3 class="text-lg font-bold mb-4">
+            Categorias
+          </h3>
           <ul class="space-y-2 text-sm">
-            <li v-for="category in categories" :key="category">
+            <li
+              v-for="category in categories"
+              :key="category"
+            >
               <NuxtLink
                 :to="`/products?category=${category}`"
                 class="text-gray-400 hover:text-white transition-colors"
               >
-                {{ formatCategory(category) }}
+                {{ formatCategory(category,) }}
               </NuxtLink>
             </li>
           </ul>
@@ -58,7 +67,9 @@
 
         <!-- Contato -->
         <div>
-          <h3 class="text-lg font-bold mb-4">Contato</h3>
+          <h3 class="text-lg font-bold mb-4">
+            Contato
+          </h3>
           <ul class="space-y-2 text-sm text-gray-400">
             <li>Email: contato@smarti.com.br</li>
             <li>Telefone: (11) 1234-5678</li>
@@ -81,8 +92,6 @@
 </template>
 
 <script setup lang="ts">
-
-const { categories } = useProductCategories();
-const currentYear = new Date().getFullYear();
-
+const { categories, } = useProductCategories()
+const currentYear = new Date().getFullYear()
 </script>

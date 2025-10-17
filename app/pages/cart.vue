@@ -3,14 +3,16 @@
     <div class="container mx-auto px-4">
       <!-- Cabeçalho -->
       <div class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Meu Carrinho</h1>
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">
+          Meu Carrinho
+        </h1>
         <p class="text-gray-600">
           {{
             isEmpty
               ? "Seu carrinho está vazio"
               : `${totalItems} ${
-                  totalItems === 1 ? "item" : "itens"
-                } no carrinho`
+                totalItems === 1 ? "item" : "itens"
+              } no carrinho`
           }}
         </p>
       </div>
@@ -19,10 +21,21 @@
       <CartEmpty v-if="isEmpty" />
 
       <!-- Carrinho com Itens -->
-      <div v-else class="grid lg:grid-cols-3 gap-8">
+      <div
+        v-else
+        class="grid lg:grid-cols-3 gap-8"
+      >
         <div class="lg:col-span-2 space-y-4">
-          <TransitionGroup name="cart-item" tag="div" class="space-y-4">
-            <CartItem v-for="item in items" :key="item.id" :item="item" />
+          <TransitionGroup
+            name="cart-item"
+            tag="div"
+            class="space-y-4"
+          >
+            <CartItem
+              v-for="item in items"
+              :key="item.id"
+              :item="item"
+            />
           </TransitionGroup>
         </div>
 
@@ -38,7 +51,10 @@
         </div>
       </div>
       <!-- Produtos Relacionados -->
-      <div v-if="!isEmpty" class="mt-16">
+      <div
+        v-if="!isEmpty"
+        class="mt-16"
+      >
         <h2 class="text-2xl font-bold text-gray-900 mb-6">
           Você também pode gostar
         </h2>
@@ -60,29 +76,29 @@
 <script setup lang="ts">
 definePageMeta({
   pageTransition: {
-    name: "rotate",
+    name: 'rotate',
   },
-});
-const { products } = useProducts();
-const { items, totalItems, totalPrice, isEmpty, lastUpdated } = useCart();
+},)
+const { products, } = useProducts()
+const { items, totalItems, totalPrice, isEmpty, lastUpdated, } = useCart()
 
 const suggestedProducts = computed(() => {
-  if (isEmpty.value) return [];
-  const cartProductIds = items.value.map((item) => item.id);
+  if (isEmpty.value) return []
+  const cartProductIds = items.value.map(item => item.id,)
   return products.value
-    .filter((product) => !cartProductIds.includes(product.id))
-    .slice(0, 4);
-});
+    .filter(product => !cartProductIds.includes(product.id,),)
+    .slice(0, 4,)
+},)
 
 useHead({
   title: `Carrinho (${totalItems.value}) - Smarti Store`,
   meta: [
     {
-      name: "description",
-      content: "Revise os itens do seu carrinho e finalize sua compra.",
+      name: 'description',
+      content: 'Revise os itens do seu carrinho e finalize sua compra.',
     },
   ],
-});
+},)
 </script>
 
 <style scoped>

@@ -91,14 +91,14 @@
 <script setup lang="ts">
 // SEO
 useHead({
-  title: "Home - Smarti Store",
+  title: 'Home - Smarti Store',
   meta: [
     {
-      name: "description",
+      name: 'description',
       content:
-        "Bem-vindo à Smarti Store. Os melhores produtos com preços incríveis!",
+        'Bem-vindo à Smarti Store. Os melhores produtos com preços incríveis!',
     },
-    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1', },
   ],
-});
+},)
 </script>

@@ -1,35 +1,35 @@
-import type { Product } from "~~/types";
+import type { Product, } from '~~/types'
 
 export const useCart = () => {
-  const cartStore = useCartStore();
+  const cartStore = useCartStore()
 
-  const addToCart = (product: Product) => {
-    cartStore.addItem(product);
-    alert(`${product.title} adicionado ao carrinho!`);
-  };
-   const removeFromCart = (productId: number, productTitle?: string) => {
-    cartStore.removeItem(productId)
-    alert(productTitle ? `${productTitle} removido do carrinho` : 'Item removido do carrinho')
+  const addToCart = (product: Product,) => {
+    cartStore.addItem(product,)
+    alert(`${product.title} adicionado ao carrinho!`,)
   }
-  const increment = (productId: number) => {
-    cartStore.incrementItemQuantity(productId)
+  const removeFromCart = (productId: number, productTitle?: string,) => {
+    cartStore.removeItem(productId,)
+    alert(productTitle ? `${productTitle} removido do carrinho` : 'Item removido do carrinho',)
   }
-  const decrement = (productId: number) => {
-    cartStore.decrementItemQuantity(productId);
-  };
+  const increment = (productId: number,) => {
+    cartStore.incrementItemQuantity(productId,)
+  }
+  const decrement = (productId: number,) => {
+    cartStore.decrementItemQuantity(productId,)
+  }
   const clearCart = () => {
-    if (confirm('Tem certeza que deseja limpar o carrinho?')) {
-      cartStore.clearCart();
-      alert('Carrinho limpo!');
+    if (confirm('Tem certeza que deseja limpar o carrinho?',)) {
+      cartStore.clearCart()
+      alert('Carrinho limpo!',)
     }
-  };
+  }
 
-  return{
-    items: computed(() => cartStore.items),
-    totalItems: computed(() => cartStore.totalItems),
-    totalPrice: computed(() => cartStore.totalPrice),
-    isEmpty: computed(() => cartStore.isEmpty),
-    lastUpdated: computed(() => cartStore.lastUpdated),
+  return {
+    items: computed(() => cartStore.items,),
+    totalItems: computed(() => cartStore.totalItems,),
+    totalPrice: computed(() => cartStore.totalPrice,),
+    isEmpty: computed(() => cartStore.isEmpty,),
+    lastUpdated: computed(() => cartStore.lastUpdated,),
 
     addToCart,
     removeFromCart,
@@ -39,4 +39,4 @@ export const useCart = () => {
     decrement,
     getItemQuantity: cartStore.getItemQuantity,
   }
-};
+}

@@ -2,8 +2,12 @@
   <div class="min-h-screen bg-gray-50 py-8">
     <div class="container mx-auto px-4">
       <div class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Nossos Produtos</h1>
-        <p class="text-gray-600">Explore nossa coleção completa de produtos</p>
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">
+          Nossos Produtos
+        </h1>
+        <p class="text-gray-600">
+          Explore nossa coleção completa de produtos
+        </p>
       </div>
 
       <!-- Filtros -->
@@ -23,7 +27,10 @@
         v-if="isLoading"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
       >
-        <ProductSkeleton v-for="n in 8" :key="n" />
+        <ProductSkeleton
+          v-for="n in 8"
+          :key="n"
+        />
       </div>
 
       <!-- Error State -->
@@ -59,10 +66,10 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: "default",
-});
-const { products, isLoading, isError, error, refetch } = useProducts();
-const { categories } = useProductCategories();
+  layout: 'default',
+},)
+const { products, isLoading, isError, error, refetch, } = useProducts()
+const { categories, } = useProductCategories()
 const {
   filteredProducts,
   searchQuery,
@@ -71,53 +78,54 @@ const {
   setCategory,
   setSearch,
   clearFilters,
-} = useFilteredProducts();
+} = useFilteredProducts()
 
-const route = useRoute();
+const route = useRoute()
 
 onMounted(() => {
-  if (route.query.category && typeof route.query.category === "string") {
-    setCategory(route.query.category);
+  if (route.query.category && typeof route.query.category === 'string') {
+    setCategory(route.query.category,)
   }
-  if (route.query.search && typeof route.query.search === "string") {
-    setSearch(route.query.search);
+  if (route.query.search && typeof route.query.search === 'string') {
+    setSearch(route.query.search,)
   }
-});
+},)
 // Atualizar URL quando filtros mudarem
-watch([selectedCategory, searchQuery], () => {
-  const query: Record<string, string> = {};
+watch([selectedCategory, searchQuery,], () => {
+  const query: Record<string, string> = {}
 
-  if (selectedCategory.value !== "all") {
-    query.category = selectedCategory.value;
+  if (selectedCategory.value !== 'all') {
+    query.category = selectedCategory.value
   }
 
   if (searchQuery.value.trim()) {
-    query.search = searchQuery.value;
+    query.search = searchQuery.value
   }
 
   navigateTo(
     {
-      path: "/products",
+      path: '/products',
       query,
     },
     {
       replace: true,
-    }
-  );
-});
+    },
+  )
+},)
 
 // SEO
 useHead({
-  title: "Produtos - Smarti Store",
+  title: 'Produtos - Smarti Store',
   meta: [
     {
-      name: "description",
+      name: 'description',
       content:
-        "Navegue por nosso catálogo completo de produtos com as melhores ofertas.",
+        'Navegue por nosso catálogo completo de produtos com as melhores ofertas.',
     },
   ],
-});
+},)
 </script>
+
 <style>
 .rotate-enter-active,
 .rotate-leave-active {

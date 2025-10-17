@@ -6,7 +6,7 @@
     <div
       class="relative bg-gray-50 p-6 h-64 flex items-center justify-center overflow-hidden"
     >
-      <img
+      <NuxtImg
         :src="product.image"
         :alt="product.title"
         class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
@@ -17,14 +17,17 @@
       <div
         class="absolute top-2 left-2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold"
       >
-        {{ formatCategory(product.category) }}
+        {{ formatCategory(product.category,) }}
       </div>
 
       <!-- Rating -->
       <div
         class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full flex items-center space-x-1"
       >
-        <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+        <svg
+          class="w-4 h-4 text-yellow-400 fill-current"
+          viewBox="0 0 20 20"
+        >
           <path
             d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
           />
@@ -53,7 +56,7 @@
       <div class="flex items-center justify-between mt-auto">
         <div class="flex flex-col">
           <span class="text-2xl font-bold text-blue-600">
-            {{ product.price }}
+            {{ formatCurrency(product.price,) }}
           </span>
           <span class="text-xs text-gray-500">
             {{ product.rating.count }} avaliações
@@ -62,14 +65,14 @@
 
         <!-- Botão adicionar -->
         <button
-          @click="handleAddToCart"
-          :disabled="isInCart(product.id)"
+          :disabled="isInCart(product.id,)"
           class="flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all duration-200"
           :class="
-            isInCart(product.id)
+            isInCart(product.id,)
               ? 'bg-green-100 text-green-700 cursor-not-allowed'
               : 'bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 active:scale-95'
           "
+          @click="handleAddToCart"
         >
           <svg
             class="w-5 h-5"
@@ -78,7 +81,7 @@
             viewBox="0 0 24 24"
           >
             <path
-              v-if="!isInCart(product.id)"
+              v-if="!isInCart(product.id,)"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
@@ -93,7 +96,7 @@
             />
           </svg>
           <span class="hidden sm:inline">
-            {{ isInCart(product.id) ? "No Carrinho" : "Adicionar" }}
+            {{ isInCart(product.id,) ? "No Carrinho" : "Adicionar" }}
           </span>
         </button>
       </div>
@@ -102,20 +105,20 @@
 </template>
 
 <script setup lang="ts">
-import { useCart } from "~/composables/useCart";
-import type { Product } from "~~/types";
+import { useCart, } from '~/composables/useCart'
+import type { Product, } from '~~/types'
 
 const props = defineProps<{
-  product: Product;
-}>();
+  product: Product
+}>()
 
-const { addToCart, isInCart } = useCart();
+const { addToCart, isInCart, } = useCart()
 
 const handleAddToCart = () => {
-  if (!isInCart(props.product.id)) {
-    addToCart(props.product);
+  if (!isInCart(props.product.id,)) {
+    addToCart(props.product,)
   }
-};
+}
 </script>
 
 <style scoped>
