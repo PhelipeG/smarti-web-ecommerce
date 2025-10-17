@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex items-center space-x-2 text-sm text-gray-500"
+    class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400"
     aria-label="Breadcrumb"
   >
     <template
@@ -10,14 +10,14 @@
       <NuxtLink
         v-if="item.to"
         :to="item.to"
-        class="hover:text-blue-600 transition-colors"
+        class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
         :aria-current="index === items.length - 1 ? 'page' : undefined"
       >
         {{ item.label }}
       </NuxtLink>
       <span
         v-else
-        class="text-gray-900 font-medium"
+        class="text-gray-900 dark:text-gray-100 font-medium"
         :aria-current="index === items.length - 1 ? 'page' : undefined"
       >
         {{ item.label }}

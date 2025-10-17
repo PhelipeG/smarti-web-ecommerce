@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 py-8">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 transition-colors duration-300">
     <div class="container mx-auto px-4">
       <!-- Breadcrumb -->
       <div class="mb-6">
@@ -7,10 +7,10 @@
       </div>
 
       <div class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
           Nossos Produtos
         </h1>
-        <p class="text-gray-600">
+        <p class="text-gray-600 dark:text-gray-400">
           Explore nossa coleção completa de produtos
         </p>
       </div>
@@ -58,7 +58,7 @@
           />
         </div>
         <!-- Informação de produtos carregados -->
-        <div class="mt-8 text-center text-gray-600">
+        <div class="mt-8 text-center text-gray-600 dark:text-gray-400">
           <p>
             Exibindo {{ filteredProducts.length }} de
             {{ products.length }} produtos

@@ -1,12 +1,12 @@
 <template>
-  <div class="bg-red-50 border border-red-200 rounded-xl p-8 text-center">
-    <LucideAlertCircle class="w-12 h-12 text-red-600 mx-auto mb-4" />
+  <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-8 text-center">
+    <LucideAlertCircle class="w-12 h-12 text-red-600 dark:text-red-400 mx-auto mb-4" />
 
-    <h3 class="text-xl font-semibold text-red-800 mb-2">
+    <h3 class="text-xl font-semibold text-red-800 dark:text-red-300 mb-2">
       {{ title }}
     </h3>
 
-    <p class="text-red-600 mb-4">
+    <p class="text-red-600 dark:text-red-400 mb-4">
       {{ message }}
     </p>
 
