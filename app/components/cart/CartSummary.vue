@@ -33,19 +33,7 @@
         class="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
         @click="handleCheckout"
       >
-        <svg
-          class="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-          />
-        </svg>
+        <LucideCreditCard class="w-5 h-5" />
         <span>Finalizar Compra</span>
       </button>
 
@@ -58,7 +46,7 @@
 
       <button
         v-if="showClearButton"
-        class="w-full text-red-600 hover:text-red-700 py-2 font-medium transition-colors"
+        class="w-full bg-amber-600 text-white hover:bg-amber-700 rounded-lg py-2 font-medium transition-colors space-x-2"
         @click="handleClearCart"
       >
         Limpar Carrinho
@@ -76,53 +64,19 @@
     <!-- Benefícios -->
     <div class="mt-6 pt-6 border-t space-y-3">
       <div class="flex items-start space-x-3 text-sm text-gray-600">
-        <svg
-          class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
+        <LucideTruck class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
         <span>Frete grátis para todo o Brasil</span>
       </div>
 
       <div class="flex items-start space-x-3 text-sm text-gray-600">
-        <svg
+        <LucideCheckCircle
           class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
+        />
         <span>Compra 100% segura</span>
       </div>
 
       <div class="flex items-start space-x-3 text-sm text-gray-600">
-        <svg
-          class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
+        <LucideRefreshCcw class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
         <span>Troca grátis em até 30 dias</span>
       </div>
     </div>

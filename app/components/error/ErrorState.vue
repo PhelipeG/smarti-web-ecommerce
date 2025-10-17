@@ -1,18 +1,6 @@
 <template>
   <div class="bg-red-50 border border-red-200 rounded-xl p-8 text-center">
-    <svg
-      class="w-16 h-16 text-red-400 mx-auto mb-4"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
+    <LucideAlertCircle class="w-12 h-12 text-red-600 mx-auto mb-4" />
 
     <h3 class="text-xl font-semibold text-red-800 mb-2">
       {{ title }}

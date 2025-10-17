@@ -20,19 +20,7 @@
             class="relative flex items-center space-x-2 text-gray-700 hover:text-blue-600 font-medium transition-colors group"
             active-class="text-blue-600"
           >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
+            <LucideShoppingCart class="w-6 h-6 group-hover:scale-110 transition-transform" />
             <span>Carrinho</span>
 
             <!-- Badge contador -->
@@ -50,27 +38,7 @@
           class="md:hidden text-gray-700 hover:text-blue-600"
           @click="mobileMenuOpen = !mobileMenuOpen"
         >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              v-if="!mobileMenuOpen"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-            <path
-              v-else
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <LucideMenu class="w-6 h-6" />
         </button>
       </div>
 
@@ -97,23 +65,11 @@
             </NuxtLink>
 
             <NuxtLink
-              to="/carrinho"
+              to="/cart"
               class="flex items-center space-x-2 text-gray-700 hover:text-blue-600 font-medium transition-colors"
               @click="mobileMenuOpen = false"
             >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
+              <LucideShoppingCart class="w-6 h-6" />
               <span>Carrinho ({{ totalItems }})</span>
             </NuxtLink>
           </div>

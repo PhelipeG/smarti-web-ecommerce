@@ -24,14 +24,7 @@
       <div
         class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full flex items-center space-x-1"
       >
-        <svg
-          class="w-4 h-4 text-yellow-400 fill-current"
-          viewBox="0 0 20 20"
-        >
-          <path
-            d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"
-          />
-        </svg>
+        <LucideStar class="w-4 h-4 text-yellow-400" />
         <span class="text-sm font-semibold text-gray-700">{{
           product.rating.rate
         }}</span>
@@ -74,27 +67,14 @@
           "
           @click="handleAddToCart"
         >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              v-if="!isInCart(product.id,)"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-            />
-            <path
-              v-else
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+          <LucidePlus
+            v-if="!isInCart(product.id,)"
+            class="w-5 h-5 text-white"
+          />
+          <LucideCheckCircle
+            v-else
+            class="w-5 h-5 text-green-600"
+          />
           <span class="hidden sm:inline">
             {{ isInCart(product.id,) ? "No Carrinho" : "Adicionar" }}
           </span>
