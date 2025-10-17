@@ -1,26 +1,26 @@
 <template>
-  <div class="bg-white rounded-xl shadow-lg p-6 sticky top-24">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">
+  <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:sticky lg:top-24">
+    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
       Resumo do Pedido
     </h2>
 
     <!-- Detalhes -->
-    <div class="space-y-4 mb-6">
-      <div class="flex justify-between text-gray-600">
-        <span>Subtotal ({{ totalItems }}
+    <div class="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+      <div class="flex justify-between text-sm sm:text-base text-gray-600">
+        <span class="flex-1">Subtotal ({{ totalItems }}
           {{ totalItems === 1 ? "item" : "itens" }})</span>
-        <span class="font-semibold">{{ formatCurrency(subtotal,) }}</span>
+        <span class="font-semibold ml-2">{{ formatCurrency(subtotal,) }}</span>
       </div>
 
-      <div class="flex justify-between text-gray-600">
+      <div class="flex justify-between text-sm sm:text-base text-gray-600">
         <span>Frete</span>
         <span class="font-semibold text-green-600">Grátis</span>
       </div>
 
-      <div class="border-t pt-4">
+      <div class="border-t pt-3 sm:pt-4">
         <div class="flex justify-between items-center">
-          <span class="text-lg font-bold text-gray-800">Total</span>
-          <span class="text-2xl font-bold text-blue-600">{{
+          <span class="text-base sm:text-lg font-bold text-gray-800">Total</span>
+          <span class="text-xl sm:text-2xl font-bold text-blue-600">{{
             formatCurrency(total,)
           }}</span>
         </div>
@@ -28,25 +28,25 @@
     </div>
 
     <!-- Botões -->
-    <div class="space-y-3">
+    <div class="space-y-2 sm:space-y-3">
       <button
-        class="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
+        class="w-full bg-blue-600 text-white py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
         @click="handleCheckout"
       >
-        <LucideCreditCard class="w-5 h-5" />
+        <LucideCreditCard class="w-4 h-4 sm:w-5 sm:h-5" />
         <span>Finalizar Compra</span>
       </button>
 
       <NuxtLink
         to="/products"
-        class="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors text-center"
+        class="block w-full bg-gray-100 text-gray-700 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium hover:bg-gray-200 transition-colors text-center"
       >
         Continuar Comprando
       </NuxtLink>
 
       <button
         v-if="showClearButton"
-        class="w-full bg-amber-600 text-white hover:bg-amber-700 rounded-lg py-2 font-medium transition-colors space-x-2"
+        class="w-full bg-amber-600 text-white hover:bg-amber-700 rounded-lg py-2 text-sm sm:text-base font-medium transition-colors space-x-2"
         @click="handleClearCart"
       >
         Limpar Carrinho
@@ -56,27 +56,27 @@
     <!-- Informações extras -->
     <div
       v-if="lastUpdated"
-      class="mt-6 pt-6 border-t text-xs text-gray-500 text-center"
+      class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t text-xs text-gray-500 text-center"
     >
       Última atualização: {{ formatDate(lastUpdated,) }}
     </div>
 
     <!-- Benefícios -->
-    <div class="mt-6 pt-6 border-t space-y-3">
-      <div class="flex items-start space-x-3 text-sm text-gray-600">
-        <LucideTruck class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+    <div class="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t space-y-2 sm:space-y-3">
+      <div class="flex items-start space-x-2 sm:space-x-3 text-xs sm:text-sm text-gray-600">
+        <LucideTruck class="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
         <span>Frete grátis para todo o Brasil</span>
       </div>
 
-      <div class="flex items-start space-x-3 text-sm text-gray-600">
+      <div class="flex items-start space-x-2 sm:space-x-3 text-xs sm:text-sm text-gray-600">
         <LucideCheckCircle
-          class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+          class="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5"
         />
         <span>Compra 100% segura</span>
       </div>
 
-      <div class="flex items-start space-x-3 text-sm text-gray-600">
-        <LucideRefreshCcw class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+      <div class="flex items-start space-x-2 sm:space-x-3 text-xs sm:text-sm text-gray-600">
+        <LucideRefreshCcw class="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
         <span>Troca grátis em até 30 dias</span>
       </div>
     </div>
@@ -84,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   totalItems: number
   subtotal: number
   total: number
