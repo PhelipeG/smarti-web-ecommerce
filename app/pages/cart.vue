@@ -135,15 +135,16 @@ const suggestedProducts = computed(() => {
 },)
 
 const toast = useToast()
+const { confirmClearCart, } = useConfirm()
 
 const handleClearAllConfirm = () => {
-  if (confirm('Deseja realmente limpar todo o carrinho?',)) {
+  confirmClearCart(() => {
     clearCart()
     toast.success({
       title: 'Carrinho limpo',
       message: 'Todos os itens foram removidos do carrinho.',
     },)
-  }
+  },)
 }
 
 useHead({

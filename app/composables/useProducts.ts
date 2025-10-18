@@ -1,10 +1,22 @@
 import { useQuery, } from '@tanstack/vue-query'
 import { productsAPI, } from '../services/product-services'
 
-export const useProducts = () => {
-  const STALE_TIME = 1000 * 60 * 5 // 5 minutos
-  const GC_TIME = 1000 * 60 * 10 // 10 minutos
+// Constantes de cache centralizadas
+const CACHE_CONFIG = {
+  products: {
+    staleTime: 1000 * 60 * 5, // 5 minutos
+    gcTime: 1000 * 60 * 10, // 10 minutos
+  },
+  categories: {
+    staleTime: 1000 * 60 * 30, // 30 minutos
+    gcTime: 1000 * 60 * 60, // 1 hora
+  },
+} as const
 
+/**
+ * Hook para buscar todos os produtos
+ */
+export const useProducts = () => {
   const {
     data: products,
     isLoading,
@@ -14,9 +26,10 @@ export const useProducts = () => {
   } = useQuery({
     queryKey: ['products',],
     queryFn: productsAPI.getAll,
-    staleTime: STALE_TIME,
-    gcTime: GC_TIME,
+    staleTime: CACHE_CONFIG.products.staleTime,
+    gcTime: CACHE_CONFIG.products.gcTime,
   },)
+
   return {
     products: computed(() => products.value || [],),
     isLoading,
@@ -25,10 +38,11 @@ export const useProducts = () => {
     refetch,
   }
 }
-export const useProductCategories = () => {
-  const STALE_TIME = 1000 * 60 * 30 // 30 minutos
 
-  // Query para buscar categorias
+/**
+ * Hook para buscar categorias de produtos
+ */
+export const useProductCategories = () => {
   const {
     data: categories,
     isLoading,
@@ -36,7 +50,8 @@ export const useProductCategories = () => {
   } = useQuery({
     queryKey: ['categories',],
     queryFn: productsAPI.getCategories,
-    staleTime: STALE_TIME,
+    staleTime: CACHE_CONFIG.categories.staleTime,
+    gcTime: CACHE_CONFIG.categories.gcTime,
   },)
 
   return {
@@ -45,29 +60,42 @@ export const useProductCategories = () => {
     isError,
   }
 }
+
+/**
+ * Hook para filtrar produtos por categoria e busca
+ */
 export const useFilteredProducts = () => {
   const { products, } = useProducts()
   const searchQuery = ref('',)
   const selectedCategory = ref('all',)
 
+  // Memoização da query normalizada para evitar recálculo
+  const normalizedQuery = computed(() =>
+    searchQuery.value.toLowerCase().trim(),
+  )
+
   const filteredProducts = computed(() => {
     let filtered = products.value
 
+    // Filtro por categoria (mais rápido, aplicar primeiro)
     if (selectedCategory.value && selectedCategory.value !== 'all') {
       filtered = filtered.filter(
         product => product.category === selectedCategory.value,
       )
     }
-    if (searchQuery.value.trim()) {
-      const query = searchQuery.value.toLowerCase().trim()
+
+    // Filtro por busca textual
+    if (normalizedQuery.value) {
       filtered = filtered.filter(
         product =>
-          product.title.toLowerCase().includes(query,)
-          || product.description.toLowerCase().includes(query,),
+          product.title.toLowerCase().includes(normalizedQuery.value,)
+          || product.description.toLowerCase().includes(normalizedQuery.value,),
       )
     }
+
     return filtered
   },)
+
   const setCategory = (category: string,) => {
     selectedCategory.value = category
   }
@@ -81,6 +109,10 @@ export const useFilteredProducts = () => {
     selectedCategory.value = 'all'
   }
 
+  const hasActiveFilters = computed(
+    () => normalizedQuery.value !== '' || selectedCategory.value !== 'all',
+  )
+
   return {
     filteredProducts,
     searchQuery,
@@ -88,8 +120,6 @@ export const useFilteredProducts = () => {
     setCategory,
     setSearch,
     clearFilters,
-    hasActiveFilters: computed(
-      () => searchQuery.value.trim() !== '' || selectedCategory.value !== 'all',
-    ),
+    hasActiveFilters,
   }
 }

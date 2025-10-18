@@ -102,6 +102,7 @@ defineProps<{
 
 const { clearCart, } = useCart()
 const toast = useToast()
+const { confirmClearCart, } = useConfirm()
 
 const handleCheckout = () => {
   toast.info({
@@ -111,8 +112,6 @@ const handleCheckout = () => {
 }
 
 const handleClearCart = () => {
-  if (confirm('Deseja realmente limpar todo o carrinho?',)) {
-    clearCart()
-  }
+  confirmClearCart(clearCart,)
 }
 </script>
