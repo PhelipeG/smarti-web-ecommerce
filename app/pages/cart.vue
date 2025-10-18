@@ -3,23 +3,27 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
       <!-- Cabeçalho -->
       <div class="mb-6 sm:mb-8 lg:mb-10">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Meu Carrinho
-            </h1>
-            <p class="text-sm sm:text-base text-gray-600 flex items-center gap-2">
-              <LucideShoppingBag class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
-              {{
-                isEmpty
-                  ? "Seu carrinho está vazio"
-                  : `${totalItems} ${totalItems === 1 ? "item" : "itens"} no carrinho`
-              }}
-            </p>
-          </div>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
+            <div>
+              <h1 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Meu Carrinho
+              </h1>
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                <LucideShoppingBag class="w-4 h-4 text-blue-600" />
+                {{
+                  isEmpty
+                    ? "Seu carrinho está vazio"
+                    : `${totalItems} ${totalItems === 1 ? "item" : "itens"} no carrinho`
+                }}
+              </p>
+            </div>
 
-          <!-- Breadcrumb -->
-          <Breadcrumb :items="breadcrumbItems" />
+            <!-- Breadcrumb -->
+            <div class="self-start">
+              <Breadcrumb :items="breadcrumbItems" />
+            </div>
+          </div>
         </div>
       </div>
 

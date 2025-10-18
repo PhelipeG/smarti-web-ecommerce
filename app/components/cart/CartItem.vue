@@ -1,71 +1,77 @@
 <template>
-  <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-3 sm:p-4 hover:shadow-lg transition-shadow">
     <!-- Layout Mobile e Desktop -->
-    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
       <!-- Imagem -->
-      <div class="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-gray-100 rounded-lg p-2 flex items-center justify-center mx-auto sm:mx-0">
+      <div class="flex-shrink-0 w-full h-32 xs:w-20 xs:h-20 sm:w-24 sm:h-24 bg-gray-100 dark:bg-gray-700 rounded-lg p-2 flex items-center justify-center mx-auto xs:mx-0">
         <NuxtImg
           :src="item.image"
           :alt="item.title"
           class="max-w-full max-h-full object-contain"
+          loading="lazy"
+          format="webp"
+          quality="80"
         />
       </div>
 
       <!-- Informações -->
-      <div class="flex-1 min-w-0 text-center sm:text-left">
-        <h3 class="text-base sm:text-lg font-semibold text-gray-800 line-clamp-2 mb-1">
+      <div class="flex-1 min-w-0 text-center xs:text-left">
+        <h3 class="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 dark:text-gray-200 line-clamp-2 mb-1">
           {{ item.title }}
         </h3>
-        <p class="text-xs sm:text-sm text-gray-500 mb-2">
+        <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
           {{ formatCategory(item.category,) }}
         </p>
-        <p class="text-lg sm:text-xl font-bold text-blue-600">
+        <p class="text-base sm:text-lg lg:text-xl font-bold text-blue-600 dark:text-blue-400">
           {{ formatCurrency(item.price,) }}
         </p>
       </div>
 
-      <!-- Controles de quantidade e Remover (Mobile: Coluna | Desktop: Row) -->
-      <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+      <!-- Controles de quantidade e Remover -->
+      <div class="flex flex-row xs:flex-col sm:flex-row items-center justify-center xs:justify-start gap-3 sm:gap-4">
         <!-- Controles de quantidade -->
         <div class="flex flex-col items-center space-y-2">
-          <div class="flex items-center space-x-2 bg-gray-100 rounded-lg p-1">
+          <div class="flex items-center space-x-1.5 sm:space-x-2 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
             <!-- Botão decrementar -->
             <button
-              class="w-8 h-8 flex items-center justify-center bg-white rounded-md hover:bg-gray-200 transition-colors"
+              class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white dark:bg-gray-600 rounded-md hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors"
               :disabled="item.quantity <= 1"
               :class="{ 'opacity-50 cursor-not-allowed': item.quantity <= 1, }"
+              :aria-label="`Diminuir quantidade de ${item.title}`"
               @click="handleDecrement"
             >
-              <LucideMinus class="w-4 h-4 sm:w-5 sm:h-5" />
+              <LucideMinus class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
 
             <!-- Quantidade -->
-            <span class="w-10 sm:w-12 text-center font-semibold text-gray-800">
+            <span class="w-8 sm:w-10 lg:w-12 text-center font-semibold text-sm sm:text-base text-gray-800 dark:text-gray-200">
               {{ item.quantity }}
             </span>
 
             <!-- Botão incrementar -->
             <button
-              class="w-8 h-8 flex items-center justify-center bg-white rounded-md hover:bg-gray-200 transition-colors"
+              class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white dark:bg-gray-600 rounded-md hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors"
+              :aria-label="`Aumentar quantidade de ${item.title}`"
               @click="handleIncrement"
             >
-              <LucidePlus class="w-4 h-4 sm:w-5 sm:h-5" />
+              <LucidePlus class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
           </div>
 
           <!-- Subtotal -->
-          <p class="text-xs sm:text-sm text-gray-600 whitespace-nowrap">
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">
             Subtotal: <span class="font-semibold">{{ formatCurrency(item.price * item.quantity,) }}</span>
           </p>
         </div>
 
         <!-- Botão remover -->
         <button
-          class="flex-shrink-0 w-10 h-10 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+          class="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors"
+          :aria-label="`Remover ${item.title} do carrinho`"
           title="Remover do carrinho"
           @click="handleRemove"
         >
-          <LucideTrash2 class="w-5 h-5 sm:w-6 sm:h-6" />
+          <LucideTrash2 class="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
     </div>

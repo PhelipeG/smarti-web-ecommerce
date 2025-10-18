@@ -45,22 +45,22 @@
     </div>
 
     <!-- Conteúdo -->
-    <div class="p-5 flex-1 flex flex-col">
+    <div class="p-4 sm:p-5 flex-1 flex flex-col">
       <!-- Título -->
-      <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2 line-clamp-2 min-h-[56px]">
+      <h3 class="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2 line-clamp-2 min-h-[44px] sm:min-h-[56px]">
         {{ product.title }}
       </h3>
 
       <!-- Descrição -->
-      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 flex-1">
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 sm:mb-4 line-clamp-2 flex-1">
         {{ truncateText(product.description,) }}
       </p>
 
       <!-- Preço e ações -->
-      <div class="flex items-center justify-between mt-auto">
-        <div class="flex flex-col">
+      <div class="flex flex-col xs:flex-row items-center justify-between gap-3 mt-auto">
+        <div class="flex flex-col text-center xs:text-left w-full xs:w-auto">
           <span
-            class="text-2xl font-bold text-blue-600 dark:text-blue-400"
+            class="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400"
             :aria-label="`Preço: ${formatCurrency(product.price,)}`"
           >
             {{ formatCurrency(product.price,) }}
@@ -79,7 +79,7 @@
           :disabled="isInCart(product.id,)"
           :aria-label="isInCart(product.id,) ? `${product.title} já está no carrinho` : `Adicionar ${product.title} ao carrinho`"
           :aria-pressed="isInCart(product.id,)"
-          class="flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+          class="w-full xs:w-auto flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg font-semibold text-sm sm:text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
           :class="
             isInCart(product.id,)
               ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 cursor-not-allowed'
@@ -89,15 +89,15 @@
         >
           <LucidePlus
             v-if="!isInCart(product.id,)"
-            class="w-5 h-5 text-white"
+            class="w-4 h-4 sm:w-5 sm:h-5 text-white"
             aria-hidden="true"
           />
           <LucideCheckCircle
             v-else
-            class="w-5 h-5 text-green-600 dark:text-green-400"
+            class="w-4 h-4 sm:w-5 sm:h-5 text-green-600 dark:text-green-400"
             aria-hidden="true"
           />
-          <span class="hidden sm:inline">
+          <span>
             {{ isInCart(product.id,) ? "No Carrinho" : "Adicionar" }}
           </span>
         </button>
