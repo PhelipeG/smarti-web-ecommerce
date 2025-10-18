@@ -1,57 +1,51 @@
 import type { Product, } from '~~/types'
 
-/**
- * Composable para gerenciar ações do carrinho de compras
- * Centraliza toda a lógica de manipulação do carrinho
- */
 export const useCart = () => {
   const cartStore = useCartStore()
+  const toast = useToast()
 
-  /**
-   * Adiciona um produto ao carrinho
-   * Se já existir, incrementa a quantidade
-   */
   const addToCart = (product: Product,) => {
     cartStore.addItem(product,)
-    alert(`${product.title} adicionado ao carrinho!`,)
+    toast.success({
+      title: 'Sucesso!',
+      message: `${product.title} adicionado ao carrinho.`,
+    },)
   }
 
-  /**
-   * Remove um produto do carrinho
-   */
   const removeFromCart = (productId: number, productTitle?: string,) => {
     cartStore.removeItem(productId,)
-    alert(productTitle ? `${productTitle} removido do carrinho` : 'Item removido do carrinho',)
+    toast.info({
+      title: 'Item removido',
+      message: productTitle ? `${productTitle} foi removido do carrinho.` : 'Item removido do carrinho.',
+    },)
   }
 
-  /**
-   * Incrementa a quantidade de um item
-   */
   const increment = (productId: number,) => {
     cartStore.incrementItemQuantity(productId,)
+    toast.info({
+      title: 'Atualizado',
+      message: 'Quantidade aumentada.',
+    },)
   }
 
-  /**
-   * Decrementa a quantidade de um item
-   */
   const decrement = (productId: number,) => {
     cartStore.decrementItemQuantity(productId,)
+    toast.info({
+      title: 'Atualizado',
+      message: 'Quantidade diminuída.',
+    },)
   }
 
-  /**
-   * Limpa todo o carrinho após confirmação
-   */
-  const clearCart = () => {
-    if (confirm('Tem certeza que deseja limpar o carrinho?',)) {
-      cartStore.clearCart()
-      alert('Carrinho limpo!',)
+  const clearCart = (showToast = true,) => {
+    cartStore.clearCart()
+    if (showToast) {
+      toast.success({
+        title: 'Carrinho limpo!',
+        message: 'Todos os itens foram removidos.',
+      },)
     }
   }
 
-  /**
-   * Toggle: adiciona se não está no carrinho, remove se está
-   * Útil para botões de add/remove
-   */
   const toggleCart = (product: Product,) => {
     if (cartStore.isInCart(product.id,)) {
       removeFromCart(product.id, product.title,)

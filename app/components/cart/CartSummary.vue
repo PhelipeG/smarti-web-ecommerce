@@ -93,12 +93,18 @@ defineProps<{
 }>()
 
 const { clearCart, } = useCart()
+const toast = useToast()
 
 const handleCheckout = () => {
-  alert('Funcionalidade de checkout em desenvolvimento!',)
+  toast.info({
+    title: 'Em desenvolvimento',
+    message: 'A funcionalidade de checkout estará disponível em breve.',
+  },)
 }
 
 const handleClearCart = () => {
-  clearCart()
+  if (confirm('Deseja realmente limpar todo o carrinho?',)) {
+    clearCart()
+  }
 }
 </script>

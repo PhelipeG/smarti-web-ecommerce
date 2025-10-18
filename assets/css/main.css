@@ -43,6 +43,7 @@ html.dark body {
   animation: fadeIn 0.3s ease-out;
 }
 
+
 /* Scrollbar customizada */
 ::-webkit-scrollbar {
   width: 10px;

@@ -97,8 +97,6 @@ const handleDecrement = () => {
 }
 
 const handleRemove = () => {
-  if (confirm(`Deseja remover "${props.item.title}" do carrinho?`,)) {
-    removeFromCart(props.item.id, props.item.title,)
-  }
+  removeFromCart(props.item.id, props.item.title,)
 }
 </script>

@@ -134,9 +134,15 @@ const suggestedProducts = computed(() => {
     .slice(0, 4,)
 },)
 
+const toast = useToast()
+
 const handleClearAllConfirm = () => {
   if (confirm('Deseja realmente limpar todo o carrinho?',)) {
     clearCart()
+    toast.success({
+      title: 'Carrinho limpo',
+      message: 'Todos os itens foram removidos do carrinho.',
+    },)
   }
 }
 
