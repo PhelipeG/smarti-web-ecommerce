@@ -3,25 +3,18 @@
     <div class="flex flex-col md:flex-row gap-4">
       <!-- Busca -->
       <div class="flex-1">
-        <label
-          for="search"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+        <Input
+          :model-value="searchQuery"
+          type="search"
+          label="Buscar produtos"
+          placeholder="Digite o nome do produto..."
+          aria-label="Campo de busca de produtos"
+          @update:model-value="handleSearch"
         >
-          Buscar produtos
-        </label>
-        <div class="relative">
-          <input
-            id="search"
-            type="text"
-            :value="searchQuery"
-            placeholder="Digite o nome do produto..."
-            class="w-full px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
-            @input="handleSearch"
-          >
-          <LucideSearch
-            class="w-5 h-5 text-gray-400 dark:text-gray-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
-          />
-        </div>
+          <template #icon>
+            <LucideSearch class="w-5 h-5" />
+          </template>
+        </Input>
       </div>
 
       <!-- Filtro por categoria -->
@@ -53,14 +46,16 @@
 
       <!-- Botão limpar filtros -->
       <div class="flex items-end">
-        <button
+        <Button
           v-if="hasActiveFilters"
-          class="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium flex items-center space-x-2"
+          variant="secondary"
+          size="lg"
+          aria-label="Limpar todos os filtros"
           @click="handleClearFilters"
         >
           <LucideX class="w-5 h-5" />
           <span>Limpar</span>
-        </button>
+        </Button>
       </div>
     </div>
 
@@ -101,9 +96,8 @@ const emit = defineEmits<{
   'clear': []
 }>()
 
-const handleSearch = (event: Event,) => {
-  const target = event.target as HTMLInputElement
-  emit('update:search', target.value,)
+const handleSearch = (value: string | number,) => {
+  emit('update:search', String(value,),)
 }
 
 const handleCategoryChange = (event: Event,) => {

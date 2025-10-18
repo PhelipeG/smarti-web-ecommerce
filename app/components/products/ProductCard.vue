@@ -74,17 +74,14 @@
         </div>
 
         <!-- Botão adicionar -->
-        <button
+        <Button
           type="button"
+          :variant="isInCart(product.id,) ? 'success' : 'primary'"
           :disabled="isInCart(product.id,)"
           :aria-label="isInCart(product.id,) ? `${product.title} já está no carrinho` : `Adicionar ${product.title} ao carrinho`"
           :aria-pressed="isInCart(product.id,)"
-          class="w-full xs:w-auto flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg font-semibold text-sm sm:text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-          :class="
-            isInCart(product.id,)
-              ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 cursor-not-allowed'
-              : 'bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 active:scale-95'
-          "
+          :full-width="true"
+          class="xs:!w-auto space-x-2"
           @click="handleAddToCart"
         >
           <LucidePlus
@@ -100,7 +97,7 @@
           <span>
             {{ isInCart(product.id,) ? "No Carrinho" : "Adicionar" }}
           </span>
-        </button>
+        </Button>
       </div>
     </div>
   </article>
@@ -128,6 +125,7 @@ const handleAddToCart = () => {
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

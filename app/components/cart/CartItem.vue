@@ -33,15 +33,16 @@
         <div class="flex flex-col items-center space-y-2">
           <div class="flex items-center space-x-1.5 sm:space-x-2 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
             <!-- Botão decrementar -->
-            <button
-              class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white dark:bg-gray-600 rounded-md hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors"
+            <Button
+              variant="ghost"
+              size="sm"
               :disabled="item.quantity <= 1"
-              :class="{ 'opacity-50 cursor-not-allowed': item.quantity <= 1, }"
               :aria-label="`Diminuir quantidade de ${item.title}`"
+              class="!w-7 !h-7 sm:!w-8 sm:!h-8 !p-0 !bg-white dark:!bg-gray-600 !rounded-md hover:!bg-gray-200 dark:hover:!bg-gray-500"
               @click="handleDecrement"
             >
               <LucideMinus class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </button>
+            </Button>
 
             <!-- Quantidade -->
             <span class="w-8 sm:w-10 lg:w-12 text-center font-semibold text-sm sm:text-base text-gray-800 dark:text-gray-200">
@@ -49,13 +50,15 @@
             </span>
 
             <!-- Botão incrementar -->
-            <button
-              class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white dark:bg-gray-600 rounded-md hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors"
+            <Button
+              variant="ghost"
+              size="sm"
               :aria-label="`Aumentar quantidade de ${item.title}`"
+              class="!w-7 !h-7 sm:!w-8 sm:!h-8 !p-0 !bg-white dark:!bg-gray-600 !rounded-md hover:!bg-gray-200 dark:hover:!bg-gray-500"
               @click="handleIncrement"
             >
               <LucidePlus class="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </button>
+            </Button>
           </div>
 
           <!-- Subtotal -->
@@ -65,14 +68,15 @@
         </div>
 
         <!-- Botão remover -->
-        <button
-          class="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors"
+        <Button
+          variant="danger"
+          size="sm"
           :aria-label="`Remover ${item.title} do carrinho`"
-          title="Remover do carrinho"
+          class="!w-9 !h-9 sm:!w-10 sm:!h-10 !p-0 flex-shrink-0"
           @click="handleRemove"
         >
           <LucideTrash2 class="w-4 h-4 sm:w-5 sm:h-5" />
-        </button>
+        </Button>
       </div>
     </div>
   </div>

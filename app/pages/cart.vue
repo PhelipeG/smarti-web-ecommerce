@@ -42,13 +42,13 @@
             <h3 class="text-lg font-semibold text-gray-900">
               Produtos ({{ totalItems }})
             </h3>
-            <button
-              class="text-sm text-red-600 hover:text-red-700 font-medium transition-colors flex items-center gap-2"
+            <Button
+              class="text-sm font-medium transition-colors flex items-center gap-2"
               @click="handleClearAllConfirm"
             >
               <LucideTrash2 class="w-4 h-4" />
               Limpar Carrinho
-            </button>
+            </Button>
           </div>
 
           <TransitionGroup

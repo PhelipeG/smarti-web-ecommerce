@@ -29,13 +29,17 @@
 
     <!-- Botões -->
     <div class="space-y-2 sm:space-y-3">
-      <button
-        class="w-full bg-blue-600 text-white py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
+      <Button
+        variant="primary"
+        size="lg"
+        full-width
+        aria-label="Finalizar compra"
+        class="shadow-md hover:shadow-lg space-x-2"
         @click="handleCheckout"
       >
         <LucideCreditCard class="w-4 h-4 sm:w-5 sm:h-5" />
         <span>Finalizar Compra</span>
-      </button>
+      </Button>
 
       <NuxtLink
         to="/products"
@@ -44,13 +48,17 @@
         Continuar Comprando
       </NuxtLink>
 
-      <button
+      <Button
         v-if="showClearButton"
-        class="w-full bg-amber-600 text-white hover:bg-amber-700 rounded-lg py-2 text-sm sm:text-base font-medium transition-colors space-x-2"
+        variant="ghost"
+        size="md"
+        full-width
+        aria-label="Limpar todo o carrinho"
+        class="!bg-amber-600 !text-white hover:!bg-amber-700"
         @click="handleClearCart"
       >
         Limpar Carrinho
-      </button>
+      </Button>
     </div>
 
     <!-- Informações extras -->
