@@ -20,21 +20,17 @@ export const useCart = () => {
     },)
   }
 
-  const increment = (productId: number,) => {
-    cartStore.incrementItemQuantity(productId,)
-    toast.info({
-      title: 'Atualizado',
-      message: 'Quantidade aumentada.',
-    },)
+  const updateQuantity = (productId: number, action: 'increment' | 'decrement',) => {
+    if (action === 'increment') {
+      cartStore.incrementItemQuantity(productId,)
+    }
+    else {
+      cartStore.decrementItemQuantity(productId,)
+    }
   }
 
-  const decrement = (productId: number,) => {
-    cartStore.decrementItemQuantity(productId,)
-    toast.info({
-      title: 'Atualizado',
-      message: 'Quantidade diminuída.',
-    },)
-  }
+  const increment = (productId: number,) => updateQuantity(productId, 'increment',)
+  const decrement = (productId: number,) => updateQuantity(productId, 'decrement',)
 
   const clearCart = (showToast = true,) => {
     cartStore.clearCart()

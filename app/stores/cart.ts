@@ -32,6 +32,10 @@ export const useCartStore = defineStore('cart', {
     },
   },
   actions: {
+    _updateTimestamp() {
+      this.lastUpdated = new Date()
+      this.persistCart()
+    },
     addItem(product: Product,) {
       const existingItem = this.items.find(item => item.id === product.id,)
 
@@ -41,13 +45,11 @@ export const useCartStore = defineStore('cart', {
       else {
         this.items.push({ ...product, quantity: 1, },)
       }
-      this.lastUpdated = new Date()
-      this.persistCart()
+      this._updateTimestamp()
     },
     removeItem(productId: number,) {
       this.items = this.items.filter(item => item.id !== productId,)
-      this.lastUpdated = new Date()
-      this.persistCart()
+      this._updateTimestamp()
     },
     updateItemQuantity(productId: number, quantity: number,) {
       const item = this.items.find(item => item.id === productId,)
@@ -58,8 +60,7 @@ export const useCartStore = defineStore('cart', {
         }
         else {
           item.quantity = quantity
-          this.lastUpdated = new Date()
-          this.persistCart()
+          this._updateTimestamp()
         }
       }
     },
@@ -67,8 +68,7 @@ export const useCartStore = defineStore('cart', {
       const item = this.items.find(item => item.id === productId,)
       if (item) {
         item.quantity += 1
-        this.lastUpdated = new Date()
-        this.persistCart()
+        this._updateTimestamp()
       }
     },
     decrementItemQuantity(productId: number,) {
@@ -76,8 +76,7 @@ export const useCartStore = defineStore('cart', {
       if (item) {
         if (item.quantity > 1) {
           item.quantity--
-          this.lastUpdated = new Date()
-          this.persistCart()
+          this._updateTimestamp()
         }
         else {
           this.removeItem(productId,)
@@ -95,15 +94,14 @@ export const useCartStore = defineStore('cart', {
             },),
           )
         }
-        catch (error) {
-          console.error('Erro ao salvar carrinho:', error,)
+        catch {
+          // Falha silenciosa - localStorage pode estar desabilitado
         }
       }
     },
     clearCart() {
       this.items = []
-      this.lastUpdated = new Date()
-      this.persistCart()
+      this._updateTimestamp()
     },
     loadCart() {
       if (import.meta.client) {
@@ -117,8 +115,8 @@ export const useCartStore = defineStore('cart', {
               : null
           }
         }
-        catch (error) {
-          console.error('Erro ao carregar carrinho:', error,)
+        catch {
+          // Falha silenciosa - dados corrompidos ou inexistentes
         }
       }
     },
