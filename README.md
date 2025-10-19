@@ -182,27 +182,12 @@ npm run test:coverage
 
 ## 📊 Coverage de Testes
 
-### 📁 Arquivos Testados
-
-| Arquivo | Statements | Branches | Functions | Lines | Status |
-|---------|------------|----------|-----------|-------|--------|
-| `utils/formatters.ts` | 100% | 100% | 100% | 100% | ✅ |
-| `components/ProductCard.vue` | 100% | 95% | 100% | 100% | ✅ |
-| `stores/cart.ts` | 95% | 90% | 100% | 95% | ✅ |
-
 ### 📊 Visualizar Coverage
 
 ```bash
 npm run test:coverage
 ```
-
 **Saída**: `coverage/index.html`
-
-Abra no navegador para ver relatório detalhado com:
-- Linhas cobertas (verde)
-- Linhas não testadas (vermelho)
-- Branches não executados (amarelo)
-
 ---
 
 ## 📸 Screenshots
