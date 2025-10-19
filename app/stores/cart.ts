@@ -32,9 +32,20 @@ export const useCartStore = defineStore('cart', {
     },
   },
   actions: {
-    _updateTimestamp() {
+    _persist() {
       this.lastUpdated = new Date()
-      this.persistCart()
+
+      if (import.meta.client) {
+        try {
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({ items: this.items, lastUpdated: this.lastUpdated, },),
+          )
+        }
+        catch {
+          // Falha silenciosa - localStorage pode estar desabilitado
+        }
+      }
     },
     addItem(product: Product,) {
       const existingItem = this.items.find(item => item.id === product.id,)
@@ -45,11 +56,11 @@ export const useCartStore = defineStore('cart', {
       else {
         this.items.push({ ...product, quantity: 1, },)
       }
-      this._updateTimestamp()
+      this._persist()
     },
     removeItem(productId: number,) {
       this.items = this.items.filter(item => item.id !== productId,)
-      this._updateTimestamp()
+      this._persist()
     },
     updateItemQuantity(productId: number, quantity: number,) {
       const item = this.items.find(item => item.id === productId,)
@@ -60,7 +71,7 @@ export const useCartStore = defineStore('cart', {
         }
         else {
           item.quantity = quantity
-          this._updateTimestamp()
+          this._persist()
         }
       }
     },
@@ -68,7 +79,7 @@ export const useCartStore = defineStore('cart', {
       const item = this.items.find(item => item.id === productId,)
       if (item) {
         item.quantity += 1
-        this._updateTimestamp()
+        this._persist()
       }
     },
     decrementItemQuantity(productId: number,) {
@@ -76,32 +87,16 @@ export const useCartStore = defineStore('cart', {
       if (item) {
         if (item.quantity > 1) {
           item.quantity--
-          this._updateTimestamp()
+          this._persist()
         }
         else {
           this.removeItem(productId,)
         }
       }
     },
-    persistCart() {
-      if (import.meta.client) {
-        try {
-          localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify({
-              items: this.items,
-              lastUpdated: this.lastUpdated,
-            },),
-          )
-        }
-        catch {
-          // Falha silenciosa - localStorage pode estar desabilitado
-        }
-      }
-    },
     clearCart() {
       this.items = []
-      this._updateTimestamp()
+      this._persist()
     },
     loadCart() {
       if (import.meta.client) {

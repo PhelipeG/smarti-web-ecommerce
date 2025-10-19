@@ -1,31 +1,26 @@
 import type { ToastType, ToastOptions, Toast, } from '~~/types/toast'
 
+const DEFAULT_DURATION = 5000
+
 export const useToast = () => {
   const toasts = useState<Toast[]>('toasts', () => [],)
 
   const addToast = (type: ToastType, options: ToastOptions,) => {
-    const id = `toast-${Date.now()}-${Math.random().toString(36,).substring(2, 9,)}`
-    const duration = options.duration || 5000
-
-    const toast: Toast = {
-      id,
+    const toast = {
+      id: `toast-${Date.now()}-${Math.random().toString(36,).substring(2, 9,)}`,
       type,
       title: options.title,
       message: options.message,
-      duration,
+      duration: options.duration || DEFAULT_DURATION,
       progress: 100,
     }
 
     toasts.value.push(toast,)
 
-    // Auto remover após a duração
+    // Auto-cleanup: remover após duração
     setTimeout(() => {
-      removeToast(id,)
-    }, duration,)
-  }
-
-  const removeToast = (id: string,) => {
-    toasts.value = toasts.value.filter(t => t.id !== id,)
+      toasts.value = toasts.value.filter(t => t.id !== toast.id,)
+    }, toast.duration,)
   }
 
   return {

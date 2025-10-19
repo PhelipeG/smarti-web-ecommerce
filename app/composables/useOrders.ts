@@ -31,7 +31,7 @@ export const useOrders = () => {
   }
 
   const getOrders = (): Order[] => {
-    if (typeof window === 'undefined') return []
+    if (!import.meta.client) return []
     const stored = localStorage.getItem(STORAGE_KEY,)
     return stored ? JSON.parse(stored,) : []
   }

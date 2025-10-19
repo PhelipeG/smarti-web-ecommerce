@@ -69,40 +69,25 @@ export const useFilteredProducts = () => {
   const searchQuery = ref('',)
   const selectedCategory = ref('all',)
 
-  // Memoização da query normalizada para evitar recálculo
-  const normalizedQuery = computed(() =>
-    searchQuery.value.toLowerCase().trim(),
-  )
-
   const filteredProducts = computed(() => {
     let filtered = products.value
+    const query = searchQuery.value.toLowerCase().trim()
 
     // Filtro por categoria (mais rápido, aplicar primeiro)
-    if (selectedCategory.value && selectedCategory.value !== 'all') {
-      filtered = filtered.filter(
-        product => product.category === selectedCategory.value,
-      )
+    if (selectedCategory.value !== 'all') {
+      filtered = filtered.filter(product => product.category === selectedCategory.value,)
     }
 
     // Filtro por busca textual
-    if (normalizedQuery.value) {
-      filtered = filtered.filter(
-        product =>
-          product.title.toLowerCase().includes(normalizedQuery.value,)
-          || product.description.toLowerCase().includes(normalizedQuery.value,),
+    if (query) {
+      filtered = filtered.filter(product =>
+        product.title.toLowerCase().includes(query,)
+        || product.description.toLowerCase().includes(query,),
       )
     }
 
     return filtered
   },)
-
-  const setCategory = (category: string,) => {
-    selectedCategory.value = category
-  }
-
-  const setSearch = (query: string,) => {
-    searchQuery.value = query
-  }
 
   const clearFilters = () => {
     searchQuery.value = ''
@@ -110,15 +95,15 @@ export const useFilteredProducts = () => {
   }
 
   const hasActiveFilters = computed(
-    () => normalizedQuery.value !== '' || selectedCategory.value !== 'all',
+    () => searchQuery.value.trim() !== '' || selectedCategory.value !== 'all',
   )
 
   return {
     filteredProducts,
     searchQuery,
     selectedCategory,
-    setCategory,
-    setSearch,
+    setCategory: (category: string,) => { selectedCategory.value = category },
+    setSearch: (query: string,) => { searchQuery.value = query },
     clearFilters,
     hasActiveFilters,
   }

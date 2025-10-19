@@ -41,13 +41,7 @@ defineEmits<{
   retry: []
 }>()
 
-const message = computed(() => {
-  if (props.message) {
-    return props.message
-  }
-  if (props.error?.message) {
-    return props.error.message
-  }
-  return 'Ocorreu um erro inesperado'
-},)
+const message = computed(() =>
+  props.message || props.error?.message || 'Ocorreu um erro inesperado',
+)
 </script>
