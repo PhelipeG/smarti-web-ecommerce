@@ -92,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   totalItems: number
   subtotal: number
   total: number
@@ -100,15 +100,12 @@ defineProps<{
   showClearButton?: boolean
 }>()
 
-const { clearCart, } = useCart()
-const toast = useToast()
+const { clearCart, items, } = useCart()
 const { confirmClearCart, } = useConfirm()
+const { open, } = useCheckoutModal()
 
 const handleCheckout = () => {
-  toast.info({
-    title: 'Em desenvolvimento',
-    message: 'A funcionalidade de checkout estará disponível em breve.',
-  },)
+  open(items.value, props.total,)
 }
 
 const handleClearCart = () => {

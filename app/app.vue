@@ -4,6 +4,7 @@
       <NuxtPage />
     </NuxtLayout>
     <ToastNotification />
+    <CheckoutModal />
   </div>
 </template>
 
