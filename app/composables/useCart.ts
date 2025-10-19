@@ -20,17 +20,8 @@ export const useCart = () => {
     },)
   }
 
-  const updateQuantity = (productId: number, action: 'increment' | 'decrement',) => {
-    if (action === 'increment') {
-      cartStore.incrementItemQuantity(productId,)
-    }
-    else {
-      cartStore.decrementItemQuantity(productId,)
-    }
-  }
-
-  const increment = (productId: number,) => updateQuantity(productId, 'increment',)
-  const decrement = (productId: number,) => updateQuantity(productId, 'decrement',)
+  const increment = (productId: number,) => cartStore.incrementItemQuantity(productId,)
+  const decrement = (productId: number,) => cartStore.decrementItemQuantity(productId,)
 
   const clearCart = (showToast = true,) => {
     cartStore.clearCart()

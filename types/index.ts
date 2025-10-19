@@ -22,6 +22,16 @@ export interface CartState {
   lastUpdated: Date | null
 }
 
+// Order interfaces
+export interface Order {
+  id: string
+  name: string
+  address: string
+  items: CartItem[]
+  total: number
+  date: string
+}
+
 // Filter interfaces
 export interface ProductFilters {
   category: string

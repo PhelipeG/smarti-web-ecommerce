@@ -1,13 +1,4 @@
-import type { CartItem, } from '../../types'
-
-interface Order {
-  id: string
-  name: string
-  address: string
-  items: CartItem[]
-  total: number
-  date: string
-}
+import type { CartItem, Order, } from '~~/types'
 
 const STORAGE_KEY = 'smart-ecommerce-orders'
 
@@ -31,7 +22,7 @@ export const useOrders = () => {
   }
 
   const getOrders = (): Order[] => {
-    if (typeof window === 'undefined') return []
+    if (!import.meta.client) return []
     const stored = localStorage.getItem(STORAGE_KEY,)
     return stored ? JSON.parse(stored,) : []
   }

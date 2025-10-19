@@ -131,31 +131,20 @@ function removeToast(id: string,) {
 
 function pauseToast(id: string,) {
   const timer = timers.get(id,)
-  const progressInterval = progressIntervals.get(id,)
+  const interval = progressIntervals.get(id,)
 
-  if (timer) {
-    clearTimeout(timer,)
-  }
-
-  if (progressInterval) {
-    clearInterval(progressInterval,)
-  }
+  if (timer) clearTimeout(timer,)
+  if (interval) clearInterval(interval,)
 }
 
 function resumeToast(id: string,) {
   const toast = toasts.value.find(t => t.id === id,)
-  if (!toast || toast.progress === undefined) return
+  if (!toast?.progress) return
 
-  const remainingTime = (toast.progress / 100) * (toast.duration || 5000)
-  const remainingProgress = toast.progress
+  const duration = (toast.progress / 100) * (toast.duration || 5000)
 
-  startProgressBar(id, remainingTime, remainingProgress,)
-
-  const timer = setTimeout(() => {
-    removeToast(id,)
-  }, remainingTime,)
-
-  timers.set(id, timer,)
+  startProgressBar(id, duration, toast.progress,)
+  timers.set(id, setTimeout(() => removeToast(id,), duration,),)
 }
 
 function startProgressBar(id: string, duration: number, startProgress = 100,) {
