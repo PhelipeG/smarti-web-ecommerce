@@ -192,29 +192,34 @@ npm run test:coverage
 
 ## 📸 Screenshots
 
-### 🏠 Home Page
-<!-- ![Home Page](docs/screenshots/home.png) -->
-- Hero section com logo animado
-- CTA para explorar produtos
-- Features do e-commerce
-
-### 🛍️ Página de Produtos
-<!-- ![Products Page](docs/screenshots/products.png) -->
-- Grade responsiva de produtos
-- Filtros por categoria e busca
-- Skeleton loading states
-
-### 🛒 Carrinho de Compras
-<!-- ![Cart Page](docs/screenshots/cart.png) -->
-- Lista de itens com controles
-- Resumo com total
-- Produtos relacionados
-
-### 🌙 Dark Mode
-<!-- ![Dark Mode](docs/screenshots/dark-mode.png) -->
-- Toggle de tema no header
-- Transições suaves
-- Cores otimizadas
+<table>
+  <tr>
+    <td width="50%">
+      <h3 align="center">🏠 Home Page</h3>
+      <img src="/screenshots/home.png" alt="Home Page" width="100%"/>
+    </td>
+    <td width="50%">
+      <h3 align="center">🛍️ Página de Produtos</h3>
+      <img src="/screenshots/products.png" alt="Products Page" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3 align="center">🔍 Filtros</h3>
+      <img src="/screenshots/filters.png" alt="Filters" width="100%"/>
+    </td>
+    <td width="50%">
+      <h3 align="center">🛒 Carrinho de Compras</h3>
+      <img src="/screenshots/cart.png" alt="Cart Page" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" colspan="2">
+      <h3 align="center">🌙 Dark Mode</h3>
+      <img src="/screenshots/dark-mode.png" alt="Dark Mode" width="50%" style="display: block; margin: 0 auto;"/>
+    </td>
+  </tr>
+</table>
 
 ---
 
