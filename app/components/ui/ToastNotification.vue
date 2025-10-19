@@ -2,7 +2,13 @@
   <ClientOnly>
     <Teleport to="body">
       <div class="fixed top-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none">
-        <TransitionGroup name="toast">
+        <TransitionGroup
+          enter-active-class="transition-all duration-300 ease-out"
+          leave-active-class="transition-all duration-300 ease-out"
+          enter-from-class="opacity-0 translate-x-24"
+          leave-to-class="opacity-0 translate-x-24 scale-90"
+          move-class="transition-transform duration-300 ease-out"
+        >
           <div
             v-for="toast in toasts"
             :key="toast.id"
@@ -183,24 +189,3 @@ onUnmounted(() => {
   progressIntervals.clear()
 },)
 </script>
-
-<style scoped>
-.toast-enter-active,
-.toast-leave-active {
-  transition: all 0.3s ease;
-}
-
-.toast-enter-from {
-  opacity: 0;
-  transform: translateX(100px);
-}
-
-.toast-leave-to {
-  opacity: 0;
-  transform: translateX(100px) scale(0.9);
-}
-
-.toast-move {
-  transition: transform 0.3s ease;
-}
-</style>

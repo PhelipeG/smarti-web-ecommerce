@@ -7,7 +7,10 @@
     @click="toggleTheme"
   >
     <Transition
-      name="theme-icon"
+      enter-active-class="transition-all duration-300 ease-out"
+      leave-active-class="transition-all duration-300 ease-out"
+      enter-from-class="opacity-0 -rotate-180 scale-0"
+      leave-to-class="opacity-0 rotate-180 scale-0"
       mode="out-in"
     >
       <LucideSun
@@ -29,20 +32,3 @@
 <script setup lang="ts">
 const { isDark, toggleTheme, } = useTheme()
 </script>
-
-<style scoped>
-.theme-icon-enter-active,
-.theme-icon-leave-active {
-  transition: all 0.3s ease;
-}
-
-.theme-icon-enter-from {
-  opacity: 0;
-  transform: rotate(-180deg) scale(0);
-}
-
-.theme-icon-leave-to {
-  opacity: 0;
-  transform: rotate(180deg) scale(0);
-}
-</style>

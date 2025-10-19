@@ -52,7 +52,11 @@
           </div>
 
           <TransitionGroup
-            name="cart-item"
+            enter-active-class="transition-all duration-300 ease-out"
+            leave-active-class="transition-all duration-300 ease-out absolute w-full"
+            enter-from-class="opacity-0 -translate-x-8"
+            leave-to-class="opacity-0 translate-x-8"
+            move-class="transition-all duration-300 ease-out"
             tag="div"
             class="space-y-3 sm:space-y-4"
           >
@@ -157,26 +161,3 @@ useHead({
   ],
 },)
 </script>
-
-<style scoped>
-.cart-item-move,
-.cart-item-enter-active,
-.cart-item-leave-active {
-  transition: all 0.3s ease;
-}
-
-.cart-item-enter-from {
-  opacity: 0;
-  transform: translateX(-30px);
-}
-
-.cart-item-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.cart-item-leave-active {
-  position: absolute;
-  width: 100%;
-}
-</style>
