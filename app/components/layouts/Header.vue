@@ -23,16 +23,16 @@
           aria-label="Navegação principal"
         >
           <NuxtLink
-            to="/products"
+            to="/orders"
             class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
             active-class="text-blue-600 dark:text-blue-400"
-            aria-label="Ver todos os produtos"
+            aria-label="Ver meus pedidos"
           >
-            <LucidePackage
+            <LucideClipboardList
               class="w-5 h-5"
               aria-hidden="true"
             />
-            <span>Produtos</span>
+            <span>Meus Pedidos</span>
           </NuxtLink>
 
           <NuxtLink
@@ -113,6 +113,19 @@
                 aria-hidden="true"
               />
               <span>Produtos</span>
+            </NuxtLink>
+
+            <NuxtLink
+              to="/orders"
+              class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+              aria-label="Ver meus pedidos"
+              @click="mobileMenuOpen = false"
+            >
+              <LucideClipboardList
+                class="w-5 h-5"
+                aria-hidden="true"
+              />
+              <span>Meus Pedidos</span>
             </NuxtLink>
 
             <NuxtLink
