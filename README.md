@@ -219,6 +219,12 @@ npm run test:coverage
       <img src="/screenshots/dark-mode.png" alt="Dark Mode" width="50%" style="display: block; margin: 0 auto;"/>
     </td>
   </tr>
+   <tr>
+    <td width="50%" colspan="">
+      <h3 align="center">📦 Meus Pedidos</h3>
+      <img src="/screenshots/orders.png" alt="Orders Page" width="50%" style="display: block; margin: 0 auto;"/>
+    </td>
+  </tr>
 </table>
 
 ---
