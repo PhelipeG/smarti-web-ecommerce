@@ -28,10 +28,11 @@ Aplicação de e-commerce responsiva (320px - 3840px) que consome a [Fake Store 
 - ✅ Adicionar/remover produtos do carrinho
 - ✅ Visualizar total de itens e preço
 - ✅ Persistência no localStorage
+- ✅ Histórico de pedidos realizados
 - ✅ Filtros por categoria e busca por nome
 - ✅ Tema dark/light mode
 - ✅ Toast notifications customizadas
-- ✅ Sistema de rotas `/products` e `/cart`
+- ✅ Sistema de rotas `/products`, `/cart` e `/orders`
 
 ---
 
@@ -60,8 +61,11 @@ smart-ecommerce/
 │   │   ├── common/         # Componentes base (Button, Input, Breadcrumb)
 │   │   ├── cart/           # Componentes do carrinho
 │   │   ├── products/       # Componentes de produtos
+│   │   ├── orders/         # Componentes de pedidos (OrderCard)
 │   │   ├── layouts/        # Header e Footer
-│   │   └── home/           # Componentes da home
+│   │   ├── home/           # Componentes da home
+│   │   ├── ui/             # Componentes de UI (Toast, Modal, ThemeToggle)
+│   │   └── error/          # Componentes de erro (ErrorState)
 │   ├── composables/        # Composables Vue (lógica reutilizável)
 │   ├── stores/             # Pinia stores (estado global)
 │   ├── pages/              # Rotas da aplicação
@@ -71,18 +75,27 @@ smart-ecommerce/
 │   └── test/               # Testes unitários
 ├── assets/css/             # Estilos globais
 ├── public/                 # Arquivos estáticos
+├── screenshots/            # Screenshots da aplicação
 ├── types/                  # Definições TypeScript
 └── nuxt.config.ts          # Configuração Nuxt
 ```
 
 ### 📂 Descrição das Pastas
 
-- **components/**: Componentes Vue organizados por domínio
-- **composables/**: Lógica reutilizável (useCart, useProducts, useConfirm)
+- **components/common/**: Componentes base reutilizáveis (Button, Input, Breadcrumb)
+- **components/cart/**: Componentes específicos do carrinho (CartItem, CartSummary, CheckoutModal)
+- **components/products/**: Componentes de produtos (ProductCard, ProductFilters, ProductSkeleton)
+- **components/orders/**: Componentes de pedidos (OrderCard)
+- **components/layouts/**: Estrutura da aplicação (Header, Footer)
+- **components/home/**: Componentes da página inicial (FeaturesSection)
+- **components/ui/**: Componentes de interface (ToastNotification, ConfirmModal, ThemeToggle)
+- **components/error/**: Componentes de tratamento de erros (ErrorState)
+- **composables/**: Lógica reutilizável (useCart, useProducts, useOrders, useToast, useConfirm)
 - **stores/**: Estado global com Pinia (CartStore)
-- **pages/**: Rotas automáticas do Nuxt (index, products, cart)
+- **pages/**: Rotas automáticas do Nuxt (index, products, cart, orders)
 - **services/**: Camada de comunicação com APIs
 - **utils/**: Helpers (formatadores, API config)
+- **screenshots/**: Imagens da aplicação para documentação
 - **test/**: Testes unitários com Vitest
 
 ---
@@ -244,6 +257,7 @@ npm run test:coverage
 - ✅ Filtro por categoria (4 categorias)
 - ✅ Busca por nome em tempo real
 - ✅ Persistência no localStorage
+- ✅ Página de pedidos (histórico de compras)
 - ✅ Testes unitários (30+ testes)
 - ✅ Dark mode
 - ✅ 100% responsivo (mobile-first)
@@ -289,7 +303,7 @@ Este projeto foi desenvolvido como teste técnico para o Grupo Smarti.
 
 ## 👨‍💻 Autor
 
-**Luis Gustavo**  
+**Luis Felipe G Silva**  
 GitHub: [@PhelipeG](https://github.com/PhelipeG)
 
 ---
